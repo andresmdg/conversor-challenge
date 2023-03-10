@@ -23,6 +23,12 @@ public class Window {
 
     Object inputValue = JOptionPane.showInputDialog(dialog, message, "Conversor", JOptionPane.DEFAULT_OPTION, null,
         options, options[0]);
+    System.out.println(inputValue);
+
+    if (inputValue == null || inputValue.toString().isEmpty()) {
+      return "EXIT";
+    }
+    
     return inputValue.toString();
   }
 

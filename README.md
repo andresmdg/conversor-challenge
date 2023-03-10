@@ -15,3 +15,34 @@ MXN A EUR
 
 100mxn / 18mxn por usd = 55.55
 55usd * 0.95 usd por eur
+```
+conversor-challenge
+├─ .gitignore
+├─ README.md
+└─ src
+   ├─ Main.java
+   └─ com
+      ├─ exchange
+      │  ├─ Velocity
+      │  ├─ Volume
+      │  ├─ Weight
+      │  └─ currencies
+      │     ├─ Convert.java
+      │     ├─ Currency.java
+      │     ├─ Eur.java
+      │     ├─ Gbp.java
+      │     ├─ Jpy.java
+      │     ├─ Kpw.java
+      │     └─ Mxn.java
+      └─ gui
+         ├─ components
+         │  ├─ Button.java
+         │  ├─ Dialog.java
+         │  ├─ Input.java
+         │  └─ List.java
+         └─ window
+            ├─ Exchange.java
+            ├─ Exit.java
+            └─ Window.java
+
+```

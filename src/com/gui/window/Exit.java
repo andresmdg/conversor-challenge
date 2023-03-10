@@ -1,5 +1,6 @@
 package com.gui.window;
 
+import com.Main;
 import com.gui.components.Dialog;
 
 import javax.swing.JOptionPane;
@@ -20,10 +21,11 @@ public class Exit {
         int confirm = JOptionPane.showConfirmDialog(dialog, "¿Quiere cerrar el programa?", "Cerrar programa",
             JOptionPane.YES_NO_OPTION);
 
-        if (confirm == JOptionPane.YES_OPTION) {
+        if (confirm == JOptionPane.NO_OPTION) {
+          Main.main(null);
           dialog.dispose();
-
         }
+        dialog.dispose();
       }
     };
 
