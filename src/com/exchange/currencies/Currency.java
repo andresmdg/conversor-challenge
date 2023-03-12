@@ -1,23 +1,47 @@
+
 package com.exchange.currencies;
 
-public abstract class Currency {
+import java.util.HashMap;
+import java.util.Map;
 
-  protected Double rate;
-  protected String name;
+public class Currency {
 
-  public Currency (String name, Double rate) {
-    this.rate = rate;
-    this.name = name;
-  }
-    
-  public String getName() {
-    return this.name;
-  }
-  
-  public Double getRate() {
-    return this.rate;
-  }
+	  private String code;
+	  private String name;
+	  private Map<Currency, Double> exchangeRates;
 
-  public abstract double convert(String currency, String amount);
-  
-}
+	  public Currency(String code, String name, Map<Currency, Double> exchangeRates) {
+	    this.code = code;
+	    this.name = name;
+	    this.exchangeRates = exchangeRates;
+	  }
+
+	  public void setExchangeRate(Currency currency, double rate) {
+	    exchangeRates.put(currency, rate);
+	  }
+
+	  public double getExchangeRate(Currency currency) {
+	    return exchangeRates.get(currency);
+	  }
+
+	  public String getCode() {
+	    return code;
+	  }
+
+	  public String getName() {
+	    return name;
+	  }
+
+	  public double getRate(Currency to) {
+	    return exchangeRates.getOrDefault(to, Double.NaN);
+	  }
+
+	  public static Currency valueOf(String code) {
+	    Currency currency = CurrencyFactory.getCurrency(code);
+	    if (currency == null) {
+	      throw new IllegalArgumentException("Currency code not recognized: " + code);
+	    }
+	    return currency;
+	  }
+	  
+	}

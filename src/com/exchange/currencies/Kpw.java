@@ -1,19 +1,32 @@
 package com.exchange.currencies;
 
-/**
- * Kpw
- */
-public class Kpw  extends Currency {
+import java.util.Map;
 
-  public Kpw() {
-    super("KPW", 900.00);
-  }
+public class Kpw extends Currency {
 
-  @Override
-  public double convert(String toCurrency, String amount) {
-    double result = 0;
-
-    return result;
+  public Kpw(String code, String name, Map<Currency, Double> exchangeRates) {
+    super(code, name, exchangeRates);
+    setExchangeRate(CurrencyFactory.getCurrency("USD"), 1.00/900);
   }
   
+  //@Override
+  public double convert(String toCurrency, String amount) {
+    double result = 0;
+    try {
+        double amountValue = Double.parseDouble(amount);
+        Currency to = CurrencyFactory.getCurrency(toCurrency);
+        if (to != null) {
+            result = amountValue * getExchangeRate(to) / to.getExchangeRate(to);
+        } else {
+            System.out.println("Currency not supported: " + toCurrency);
+        }
+    } catch (NumberFormatException e) {
+        System.out.println("Invalid amount: " + amount);
+    }
+    return result;
+  }
 }
+
+
+
+
